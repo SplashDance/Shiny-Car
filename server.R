@@ -1,11 +1,7 @@
+## Note: Should be in the correct working directory beforehand.
+
 ## Run with runApp()
-
-# Should delete this before final commit
-proj_path <- paste("~/Desktop/MOOCs/Coursera/Data Science",
-                   "9. Developing Data Products/Project/shiny-project", sep='/')
-setwd(proj_path)
-
-####
+##
 
 source('./setup.R')
 

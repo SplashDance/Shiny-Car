@@ -1,5 +1,5 @@
-proj_path <- paste("~/Desktop/MOOCs/Coursera/Data Science",
-                   "9. Developing Data Products/Project/shiny-project", sep='/')
+# proj_path <- paste("~/Desktop/MOOCs/Coursera/Data Science",
+#                    "9. Developing Data Products/Project/shiny-project", sep='/')
 library(shiny)
 
 

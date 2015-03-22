@@ -7,7 +7,13 @@ library(dplyr)
 library(randomForest)
 
 set.seed(90210)
-data(cars, package='caret')
+
+try(data(cars, package='caret'))
+
+if (!("cars" %in% ls())){
+  cars <- read.table('./caret_cars.csv', sep=',', stringsAsFactors=FALSE,
+                     header=TRUE)
+}
 
 # First must add an index column for melting & join
 cars <- cbind(cars, 1:804)
@@ -29,7 +35,8 @@ names(df)[9:10] <- c("Brand", "Type")
 df <- arrange(df, index)
 df$Brand <- relevel(df$Brand, "Chevy")
 
-### If having problems, make sure this step removes the index column.
+### If having problems, make sure this step removes the column of index
+### numbers and not some other column...
 df <- df[, -8]
 
 df$Type <- factor(df$Type)
@@ -50,7 +57,7 @@ y.test <- df[-idx, 1]
 
 my.forest <- randomForest(x=train, y=y.train, xtest=test, ytest=y.test,
                           importance=TRUE, keep.forest=TRUE)
-# Better (according to caret)
+# Better forest fit (according to caret)
 my.forest2 <- randomForest(x=train, y=y.train, xtest=test, ytest=y.test,
                           importance=TRUE, keep.forest=TRUE, mtry=5)
 
